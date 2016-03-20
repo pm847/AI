@@ -4,6 +4,7 @@ from postboard import postboard
 from deluser import deluser
 import json
 import time
+import random
 
 userNum = 100
 
@@ -17,7 +18,7 @@ def createNusr(n):
 def parseboard(Bjson,UID):
     ps = Bjson["players"]
     for p in ps:
-        if(p["id"] == UID):
+        if(p != None and p["id"] == UID):
             return (Bjson["round"],p,Bjson["goals"])
     
 
@@ -26,21 +27,25 @@ roundList = []
 playerList = []
 #print(Ulist)
 for i in range(0,userNum):
-    rnd,ply,goals = parseboard(json.loads(getboard(Ulist[i]["boardId"],Ulist[i]["userId"])),Ulist[i]["userId"])
+    string = getboard(Ulist[i]["boardId"],Ulist[i]["userId"])
+    b_json = json.loads(string)
+    rnd,ply,goals = parseboard(b_json,Ulist[i]["userId"])
     roundList.append(rnd)
     playerList.append(ply)
     #print(rnd,ply)
 try:
     while(True):
         for i in range(0,userNum):
-            rnd,ply,goals = parseboard(json.loads(getboard(Ulist[i]["boardId"],Ulist[i]["userId"])),Ulist[i]["userId"])
+            string = getboard(Ulist[i]["boardId"],Ulist[i]["userId"])
+            b_json = json.loads(string)
+            rnd,ply,goals = parseboard(b_json,Ulist[i]["userId"])
             if(rnd > roundList[i]):
-                postboard(Ulist[i]["boardId"],Ulist[i]["userId"],rnd,ply,goals)
+                postboard(Ulist[i]["boardId"],Ulist[i]["userId"],rnd,ply,goals,random.randrange(2))
                 #postboard
             roundList[i] = rnd
             playerList[i] = ply
             #print(rnd,ply)
-            print(ply)
+            #print(ply)
         
         time.sleep(0.5)
 except (KeyboardInterrupt):
