@@ -9,23 +9,23 @@ def postboard(BID,UID,Round,player,goal,mode = 0):
     elif(mode == 1):
         ls = []
         if(player["x"]< goal[0]["x"]):
-            ls.append(2)
-        else:
-            ls.append(3)
-        if(player["y"] <goal[0]["y"]):
             ls.append(0)
         else:
             ls.append(1)
+        if(player["y"] <goal[0]["y"]):
+            ls.append(2)
+        else:
+            ls.append(3)
         direction = random.sample(ls,1)
             
     #print(direction)
-    if(direction == 2):
+    if(direction == 0):
         nextX = player["x"] + 1 if player["x"] <39 else 39
         nextY = player["y"]
-    elif(direction == 3):
+    elif(direction == 1):
         nextX = player["x"] - 1 if player["x"]  > 0 else 0
         nextY = player["y"]
-    elif(direction == 0):
+    elif(direction == 2):
         nextX = player["x"]
         nextY = player["y"] + 1 if player["y"] <39 else 39
     else:
