@@ -1,24 +1,14 @@
 import http.client
 import random
 
-def postboard(BID,UID,Round,player,goal,mode = 0):
+def postboard(BID,UID,Round,player):
     
     conn = http.client.HTTPConnection("172.17.183.204:80")
-    if(mode == 0):
-        direction = random.randrange(4)
-    elif(mode == 1):
-        ls = []
-        if(player["x"]< goal[0]["x"]):
-            ls.append(0)
-        else:
-            ls.append(1)
-        if(player["y"] <goal[0]["y"]):
-            ls.append(2)
-        else:
-            ls.append(3)
-        direction = random.sample(ls,1)
+    
+    direction = random.randrange(4)
+    
             
-    #print(direction)
+    print(direction)
     if(direction == 0):
         nextX = player["x"] + 1 if player["x"] <39 else 39
         nextY = player["y"]
