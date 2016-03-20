@@ -8,11 +8,11 @@ def postboard(BID,UID,Round,player,goal,mode = 0):
         direction = random.randrange(4)
     elif(mode == 1):
         ls = []
-        if(player.x < goal.x):
+        if(player["x"]< goal[0]["x"]):
             ls.append(2)
         else:
             ls.append(3)
-        if(player.y <goal.y):
+        if(player["y"] <goal[0]["y"]):
             ls.append(0)
         else:
             ls.append(1)

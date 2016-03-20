@@ -27,12 +27,14 @@ roundList = []
 playerList = []
 #print(Ulist)
 for i in range(0,userNum):
+    print("OWO")
     string = getboard(Ulist[i]["boardId"],Ulist[i]["userId"])
     b_json = json.loads(string)
     rnd,ply,goals = parseboard(b_json,Ulist[i]["userId"])
     roundList.append(rnd)
     playerList.append(ply)
     #print(rnd,ply)
+    print(ply)
 try:
     while(True):
         for i in range(0,userNum):
