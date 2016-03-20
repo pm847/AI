@@ -39,7 +39,7 @@ for i in range(0,userNum):
 
 try:
     while(True):
-        for i in range(0,userNum):
+        for i in range(0,len(roundList)):
             string = getboard(Ulist[i]["boardId"],Ulist[i]["userId"])
             b_json = json.loads(string)
             rnd,ply,goals = parseboard(b_json,Ulist[i]["userId"])
@@ -50,6 +50,7 @@ try:
 
             roundList[i] = rnd
             playerList[i] = ply
+            
 
         
         #time.sleep(0.5)
